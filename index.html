@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Sujith Bevara">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CA7 — Bear Ninja Hunter (JS2: Conditionals)</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:2rem}
+    #displayResults{font-weight:700}
+  </style>
+</head>
+<body>
+  <h1>Bear Ninja Hunter — JS2: Conditionals</h1>
+
+  <!-- Output areas -->
+  <div id="displayWelcome"></div>
+  <div id="displayChoice"></div>
+  <div id="displayResults"></div>
+
+  <!-- JS  -->
+  <script type="text/javascript">
+    "use strict";
+
+    // Computer is hard-coded to Bear in CA7
+    var computerChoice = "Bear";
+
+    // 1) Prompt for name (match spec text)
+    var playerName = prompt("Welcome to Bear Hunter Ninja! Please enter your name to get started:");
+
+    // 2) Greet with alert (match spec)
+    alert("Hi " + playerName + "! Let's Play!");
+
+    // 3) Prompt for the player's choice 
+    var playerChoice = prompt("Who are you: Bear, Ninja, or Hunter?");
+
+    // Show basic info on page
+    document.getElementById("displayWelcome").innerHTML =
+      playerName + " you chose " + playerChoice + "!";
+    document.getElementById("displayChoice").innerHTML =
+      "The computer chose " + computerChoice + "!";
+
+    // --- Required "switch" usage  ---
+    switch (playerChoice) {
+      case "Bear":
+      case "Ninja":
+      case "Hunter":
+        
+        break;
+      default:
+        
+        break;
+    }
+
+    // --- Handle ALL 9 combinations with if/else ladder ---
+    // winnerLabel: "User", "Computer", or "Tie"
+    var winnerLabel;
+
+    if (playerChoice === "Bear"   && computerChoice === "Bear")   { winnerLabel = "Tie"; }
+    else if (playerChoice === "Bear"   && computerChoice === "Ninja")  { winnerLabel = "User"; }
+    else if (playerChoice === "Bear"   && computerChoice === "Hunter") { winnerLabel = "Computer"; }
+
+    else if (playerChoice === "Ninja"  && computerChoice === "Bear")   { winnerLabel = "Computer"; }
+    else if (playerChoice === "Ninja"  && computerChoice === "Ninja")  { winnerLabel = "Tie"; }
+    else if (playerChoice === "Ninja"  && computerChoice === "Hunter") { winnerLabel = "User"; }
+
+    else if (playerChoice === "Hunter" && computerChoice === "Bear")   { winnerLabel = "User"; }
+    else if (playerChoice === "Hunter" && computerChoice === "Ninja")  { winnerLabel = "Computer"; }
+    else if (playerChoice === "Hunter" && computerChoice === "Hunter") { winnerLabel = "Tie"; }
+
+    // 4) Output winner to HTML + console
+    var resultsText;
+    if (winnerLabel === "User")      { resultsText = "You Win!"; }
+    else if (winnerLabel === "Computer") { resultsText = "Computer Wins!"; }
+    else                              { resultsText = "Tie!"; }
+
+    document.getElementById("displayResults").textContent = resultsText;
+
+    console.log(playerName + " you chose " + playerChoice + "!");
+    console.log("The computer chose " + computerChoice + "!");
+    console.log(resultsText);
+  </script>
+</body>
+</html>
